@@ -45,7 +45,7 @@ public class CustomerController {
     }
 
     @GetMapping("/customer")
-    public ModelAndView listCustomers(@PageableDefault (sort = "id",size = 3) Pageable pageable) {
+    public ModelAndView listCustomers(@PageableDefault (sort = "lastName",size = 3) Pageable pageable) {
         ModelAndView modelAndView = new ModelAndView("/customer/list");
         modelAndView.addObject("customers", customerService.findAll(pageable));
         return modelAndView;
