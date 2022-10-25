@@ -9,4 +9,5 @@ import rikkei.academy.service.IGenerateService;
 public interface ICustomerService extends IGenerateService<Customer> {
     Iterable<Customer> findAllByProvince(Province province);
     Page<Customer> findAll(Pageable pageable);
+    boolean existsByFirstName(String firstName);
 }

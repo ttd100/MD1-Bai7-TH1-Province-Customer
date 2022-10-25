@@ -37,10 +37,13 @@ public class CustomerController {
 
     @PostMapping("/create-customer")
     public ModelAndView saveCustomer(@ModelAttribute("customer") Customer customer) {
-        customerService.save(customer);
         ModelAndView modelAndView = new ModelAndView("/customer/create");
-        modelAndView.addObject("customer", new Customer());
-        modelAndView.addObject("message", "New customer created successfully");
+        if (customerService.existsByFirstName(customer.getFirstName())) {
+            modelAndView.addObject("messageCheck","firstName da ton tai");
+        }else {
+            customerService.save(customer);
+            modelAndView.addObject("message", "New customer created successfully");
+        }
         return modelAndView;
     }
 
@@ -90,6 +93,6 @@ public class CustomerController {
     @PostMapping("/delete-customer")
     public String deleteCustomer(@ModelAttribute("customer") Customer customer) {
         customerService.remove(customer.getId());
-        return "redirect:customers";
+        return "redirect:/customer";
     }
 }

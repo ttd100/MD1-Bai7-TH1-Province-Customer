@@ -8,4 +8,5 @@ import rikkei.academy.model.Province;
 @Repository
 public interface ICustomerRepository extends PagingAndSortingRepository<Customer, Long> {
     Iterable<Customer> findAllByProvince(Province province);
+    boolean existsByFirstName(String firstName);
 }

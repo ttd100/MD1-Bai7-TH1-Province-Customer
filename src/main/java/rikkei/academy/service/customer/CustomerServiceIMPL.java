@@ -42,4 +42,9 @@ public class CustomerServiceIMPL implements ICustomerService{
     public Page<Customer> findAll(Pageable pageable) {
         return customerRepository.findAll(pageable);
     }
+
+    @Override
+    public boolean existsByFirstName(String firstName) {
+        return customerRepository.existsByFirstName(firstName);
+    }
 }
